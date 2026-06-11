@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [inputNome, setInputNome] = React.useState('');
-  const [nomeSalvo, setNomeSalvo] = useLocalStorage('name', '');
-  const [casa, setCasa] = useLocalStorage('casa', '');
+  const [nomeSalvo, setNomeSalvo] = useLocalStorage('name', '');  
   const navigate = useNavigate();
 
   function handleChange({ target }) {
@@ -26,18 +25,9 @@ const Home = () => {
           Bem vindo a Hogwarts{' '}
           <span style={{ color: 'purple' }}>{nomeSalvo}!</span>
         </h2>
-        {casa ? (
-          <button
-            onClick={() => {
-              setNomeSalvo('');
-              setCasa('');
-            }}
-          >
-            Refazer Seleção
-          </button>
-        ) : (
+        
           <button onClick={() => navigate('/quiz')}>Fazer Seleção</button>
-        )}
+        
       </div>
     );
   }
