@@ -102,7 +102,8 @@ const Resultado = () => {
         </div>
       </div>
 
-      <button onClick={handleClick}>Voltar</button>
+      <button onClick={handleClick}>Refazer Seleção</button>
+      <button onClick={() => navigate('/')}>Voltar</button>
     </section>
   );
 };

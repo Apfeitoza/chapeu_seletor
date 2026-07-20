@@ -2,6 +2,7 @@ import React from 'react';
 import useLocalStorage from './useLocalStorage';
 import NameInput from './NameInput';
 import { useNavigate } from 'react-router-dom';
+import styles from './Home.module.css'
 
 const Home = () => {
   const [inputNome, setInputNome] = React.useState('');
@@ -26,7 +27,7 @@ const Home = () => {
           <span style={{ color: 'purple' }}>{nomeSalvo}!</span>
         </h2>
         
-          <button onClick={() => navigate('/quiz')}>Fazer Seleção</button>
+          <button className={styles.botao} onClick={() => navigate('/quiz')}>Fazer Seleção</button>
         
       </div>
     );
