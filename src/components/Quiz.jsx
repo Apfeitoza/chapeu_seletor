@@ -3,6 +3,7 @@ import { perguntasHogwarts } from '../data/perguntas';
 import Radio from './Radio';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from './useLocalStorage';
+import { supabase } from '../supabaseClient';
 
 const Quiz = () => {
   const navigate = useNavigate(); //instancia a navegação entre páginas
@@ -37,10 +38,41 @@ const Quiz = () => {
     }
   }
 
+  async function registraVoto(casaVencedora) {
+    try {
+      //Puxa quantos votos tem cada casa atualmente
+      const { data, error: errorBusca } = await supabase
+        .from('house_statistics')
+        .select('*')
+        .eq('house_name', casaVencedora)
+        .single();
+
+      if (errorBusca) throw errorBusca;
+
+      //Adiciona votos
+      const newVote = data.votes + 1;    
+
+      //faz o update do numero atualizado
+      const { error: errorUpdate } = await supabase
+        .from('house_statistics')
+        .update({ votes: newVote })
+        .eq('house_name', casaVencedora);
+
+      if (errorUpdate) throw errorUpdate;
+      console.log(
+        `Voto computado com sucesso! ${casaVencedora} agora tem ${newVote} votos`,
+      );
+    } catch (err) {
+      console.error('Erro de Conexão com o Banco de Dados:', err.message);
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const casaVencedora = resultadoFinal();
     setCasaSelecionada(casaVencedora);
+    console.log(casaVencedora);
+    registraVoto(casaVencedora);
     navigate('/resultado');
   }
 
