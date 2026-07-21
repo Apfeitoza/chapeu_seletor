@@ -2,14 +2,17 @@ import React from 'react';
 import { perguntasHogwarts } from '../data/perguntas';
 import Radio from './Radio';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage from './useLocalStorage';
-import { supabase } from '../supabaseClient';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { supabase } from '../supabaseClient.js';
+import { ThemeContext } from '../ThemeContext.jsx';
 
 const Quiz = () => {
   const navigate = useNavigate(); //instancia a navegação entre páginas
   const [casaSelecionada, setCasaSelecionada] = useLocalStorage('casa', '');
   const [slide, setSlide] = React.useState(0); //Controla os slides das perguntas
   const [respostas, setRespostas] = React.useState({}); //controla a resposta do usuário
+  const { selectHouseTheme } =
+    React.useContext(ThemeContext);
 
   function handleChange({ target }) {
     setRespostas({ ...respostas, [target.name]: target.value });
@@ -50,7 +53,7 @@ const Quiz = () => {
       if (errorBusca) throw errorBusca;
 
       //Adiciona votos
-      const newVote = data.votes + 1;    
+      const newVote = data.votes + 1;
 
       //faz o update do numero atualizado
       const { error: errorUpdate } = await supabase
@@ -71,8 +74,8 @@ const Quiz = () => {
     e.preventDefault();
     const casaVencedora = resultadoFinal();
     setCasaSelecionada(casaVencedora);
-    console.log(casaVencedora);
     registraVoto(casaVencedora);
+    selectHouseTheme(casaVencedora);
     navigate('/resultado');
   }
 

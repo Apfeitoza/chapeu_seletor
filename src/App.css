@@ -1,23 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&display=swap');
+@font-face {
+  font-family: 'Coelacanth';
+  src: url('./src/assets/font/Coelacanth.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Temas */
+:root,
+[data-theme='default'] {
+  --bg-color: #10151b;
+  --text-color: #dde0e3;
+  --btn-text: #c6ab50;
+  --display-color: #c6ab50;
+  --detail-color: #690080;
+}
+
+[data-theme='gryffindor'] {
+  --bg-color: #6a2a2a;
+  --text-color: #feb447;
+  --btn-text: #feb447;
+  --display-color: #de554b;
+  --detail-color: #8c0007;
+}
+
+[data-theme='ravenclaw'] {
+  --bg-color: #173353;
+  --text-color: #f1ba8c;
+  --btn-text: #f1ba8c;
+  --display-color: #265caa;
+  --detail-color: #06227b;
+}
+
+[data-theme='slytherin'] {
+  --bg-color: #0f3e35;
+  --text-color: #d3e9f5;
+  --btn-text: #d3e9f5;
+  --display-color: #086c5c;
+  --detail-color: #095d67;
+}
+
+[data-theme='hufflepuff'] {
+  --bg-color: #9a712e;
+  --text-color: #dde0e3;
+  --btn-text: #1e1e1e;
+  --display-color: #ffd600;
+  --detail-color: #fcb542;
+}
+
 body {
   font-family: 'Coelacanth', serif;
 }
 
-.gryffindor {
-  background: #de554b;
-  color: #feb447;
-}
-
-.slytherin {
-  background: #086c5c;
-  color: #d3e9f5;
-}
-
-.hufflepuff {
-  background: #fcb542;
-  color: #1e1e1e;
-}
-
-.ravenclaw {
-  background: #265caa;
-  color: #f1ba8c;
+span {
+  color: var(--display-color);
 }

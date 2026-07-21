@@ -1,5 +1,5 @@
 import React from 'react';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 import NameInput from './NameInput';
 import { useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
@@ -9,6 +9,7 @@ const Home = () => {
   const [inputNome, setInputNome] = React.useState('');
   const [nomeSalvo, setNomeSalvo] = useLocalStorage('name', '');
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [casaSelecionada] = useLocalStorage('casa');
   const navigate = useNavigate();
 
   function handleChange({ target }) {
@@ -19,23 +20,27 @@ const Home = () => {
     e.preventDefault();
     setNomeSalvo(inputNome);
     setInputNome('');
-    isModalOpen(false);
+    setIsModalOpen(false);
   }
 
   if (nomeSalvo) {
     return (
       <div>
         <h1>
-          Bem vindo a Hogwarts{' '}
-          <span style={{ color: 'purple' }}>{nomeSalvo}!</span>
+          Bem vindo a Hogwarts <span>{nomeSalvo}!</span>
         </h1>
 
         <button className={styles.botao} onClick={() => navigate('/quiz')}>
           Começar o Teste
         </button>
-        <button className={styles.botao} onClick={() => navigate('/resultado')}>
-          Salão Comunal
-        </button>
+        {casaSelecionada !== 'default' ? (
+          <button
+            className={styles.botao}
+            onClick={() => navigate('/resultado')}
+          >
+            Salão Comunal
+          </button>
+        ) : null}
       </div>
     );
   }

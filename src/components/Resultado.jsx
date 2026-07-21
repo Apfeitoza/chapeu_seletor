@@ -1,7 +1,7 @@
 import React from 'react';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
-import useFetch from './useFetch';
+import useFetch from '../hooks/useFetch';
 import { houses } from '../data/houseDescriptions';
 import {
   dicionarioCasas,
@@ -9,6 +9,7 @@ import {
   dicionarioTraits,
 } from '../data/dicionario';
 import DadosSelecao from './DadosSelecao';
+import { ThemeContext } from '../ThemeContext.jsx';
 
 const Resultado = () => {
   const {
@@ -27,6 +28,7 @@ const Resultado = () => {
   const [nomeSalvo] = useLocalStorage('name');
   const [bruxosSorteados, setBruxosSorteados] = React.useState([]);
   const [traitsSorteados, setTraitsSorteados] = React.useState([]);
+  const { resetTheme } = React.useContext(ThemeContext);
 
   const navigate = useNavigate();
 
@@ -67,6 +69,7 @@ const Resultado = () => {
   function handleClick() {
     window.localStorage.removeItem('name');
     window.localStorage.removeItem('casa');
+    resetTheme();
     navigate('/');
   }
 
@@ -92,7 +95,7 @@ const Resultado = () => {
       >
         <div className="imgContainer" style={{ gridRow: '1/-1' }}>
           <img
-            src="./src/assets/badges/placeholder.png"
+            src={`./src/assets/badges/${casaSelecionada}_badge.svg`}
             width={'300px'}
             alt="escudo"
           />
@@ -109,8 +112,7 @@ const Resultado = () => {
           <h1 className="title">
             {nomeSalvo}, bem vindo à
             <span
-              style={{
-                color: '#690080',
+              style={{                
                 display: 'block',
                 textAlign: 'center',
               }}
@@ -183,9 +185,12 @@ const Resultado = () => {
           padding: '0 60px',
         }}
       >
-        <div className="famousCharacters" style={{
+        <div
+          className="famousCharacters"
+          style={{
             padding: '0 0 0 60px',
-          }}>
+          }}
+        >
           <h2>Bruxos Famosos:</h2>
           <div>
             {bruxosSorteados.map((bruxo) => (
@@ -200,7 +205,10 @@ const Resultado = () => {
             ))}
           </div>
         </div>
-        <DadosSelecao casaTraduzida={dicionarioCasas[listaCasa.name]} casaSelecionada={casaSelecionada} />
+        <DadosSelecao
+          casaTraduzida={dicionarioCasas[listaCasa.name]}
+          casaSelecionada={casaSelecionada}
+        />
       </section>
       <div
         className="btns"

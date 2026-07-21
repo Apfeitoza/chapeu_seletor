@@ -60,13 +60,17 @@ const DadosSelecao = ({ casaTraduzida, casaSelecionada }) => {
         <p>Confira a porcentagem geral:</p>
         <div>
           {items.map((item) => {
-            //Se o total de votos for maior que zero divite pelo total e multiplica por 100
+            //Se o total de votos for maior que zero divide pelo total e multiplica por 100
             const porcentagem =
               total > 0 ? Math.round((item.votes / total) * 100) : 0;
 
             return (
               <div className={item.house_name} key={item.house_name}>
-                <p>{item.house_name}</p>
+                <img
+                  src={`./src/assets/badges/${item.house_name}_flag.svg`}
+                  width={'100px'}
+                  alt="escudo"
+                />
                 <span>{porcentagem}%</span>
               </div>
             );
