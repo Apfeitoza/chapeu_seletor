@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Radio = ({ pergunta, opcoes, onChange, value, id, active }) => {
   if (active === false) return null;
 

@@ -1,9 +1,7 @@
-import React from 'react';
-
 const NameInput = ({ onSubmit, onChange, input, type, id }) => {
   return (
     <form onSubmit={onSubmit}>
-      <label htmlFor={id}>Caro aluno, nos informe seu nome!</label>
+      <label htmlFor={id}>Caro aluno, insira o seu nome!</label>
       <input
         type={type}
         id={id}
