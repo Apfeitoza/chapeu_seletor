@@ -33,6 +33,9 @@ const Home = () => {
         <button className={styles.botao} onClick={() => navigate('/quiz')}>
           Começar o Teste
         </button>
+        <button className={styles.botao} onClick={() => navigate('/resultado')}>
+          Salão Comunal
+        </button>
       </div>
     );
   }

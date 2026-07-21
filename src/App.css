@@ -1,3 +1,23 @@
 body {
   font-family: 'Coelacanth', serif;
 }
+
+.gryffindor {
+  background: #de554b;
+  color: #feb447;
+}
+
+.slytherin {
+  background: #086c5c;
+  color: #d3e9f5;
+}
+
+.hufflepuff {
+  background: #fcb542;
+  color: #1e1e1e;
+}
+
+.ravenclaw {
+  background: #265caa;
+  color: #f1ba8c;
+}

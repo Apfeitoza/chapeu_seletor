@@ -8,6 +8,7 @@ import {
   dicionarioCores,
   dicionarioTraits,
 } from '../data/dicionario';
+import DadosSelecao from './DadosSelecao';
 
 const Resultado = () => {
   const {
@@ -199,58 +200,7 @@ const Resultado = () => {
             ))}
           </div>
         </div>
-        <div
-          className="houseStatistics"
-          style={{
-            padding: '0 60px 0 0',
-          }}
-        >
-          <div
-            className="houseMates"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <h2>Colegas de Casa</h2>
-            <span style={{ fontSize: '3rem' }}>1459</span>
-            <p>alunos se juntaram á {dicionarioCasas[listaCasa.name]}</p>
-          </div>
-          <div className="statistics">
-            <p>Confira a porcentagem geral:</p>
-            <div>
-              <div
-                className="grifinoria"
-                style={{ backgroundColor: '#DE554B', color: '#FEB447' }}
-              >
-                <p>Grifinória</p>
-                <span>porcentagem</span>
-              </div>
-              <div
-                className="sonserina"
-                style={{ backgroundColor: '#086C5C', color: '#D3E9F5' }}
-              >
-                <p>Sonserina</p>
-                <span>porcentagem</span>
-              </div>
-              <div
-                className="lufa-lufa"
-                style={{ backgroundColor: '#FCB542', color: '#1E1E1E' }}
-              >
-                <p>Lufa-Lufa</p>
-                <span>porcentagem</span>
-              </div>
-              <div
-                className="corvinal"
-                style={{ backgroundColor: '#265CAA', color: '#F1BA8C' }}
-              >
-                <p>Corvinal</p>
-                <span>porcentagem</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <DadosSelecao casaTraduzida={dicionarioCasas[listaCasa.name]} casaSelecionada={casaSelecionada} />
       </section>
       <div
         className="btns"
