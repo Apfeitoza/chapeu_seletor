@@ -1,0 +1,47 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem 4rem;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100%;
+  padding: 32px;
+  max-height: 80vh;
+  background:
+    linear-gradient(
+      64.27deg,
+      rgba(16, 21, 27, 0.2) 20.6%,
+      rgba(252, 181, 66, 0.02) 79.75%,
+      rgba(247, 238, 186, 0.02) 98.88%
+    ),
+    linear-gradient(
+      295.38deg,
+      rgba(16, 21, 27, 0.2) 37.44%,
+      rgba(252, 181, 66, 0.02) 69.67%,
+      rgba(247, 238, 186, 0.02) 89.1%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(16, 21, 27, 0.8) 17.21%,
+      rgba(40, 39, 32, 0.48) 52.15%,
+      rgba(252, 181, 66, 0.08) 81.88%,
+      rgba(247, 238, 186, 0.08) 97.52%
+    ),
+    url('../assets/img/great_hall_bg.jpg');
+  background-size: cover;
+  border-radius: 5px;
+}
+
+

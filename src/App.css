@@ -14,6 +14,7 @@
   --btn-text: #c6ab50;
   --display-color: #c6ab50;
   --detail-color: #690080;
+  --quiz-card-text: var(--text-color);
 }
 
 [data-theme='gryffindor'] {
@@ -22,6 +23,10 @@
   --btn-text: #feb447;
   --display-color: #de554b;
   --detail-color: #8c0007;
+  --quiz-card-text: var(--text-color);
+  --filter: drop-shadow(0px 0px 100px rgba(251, 197, 197, 0.2))
+    drop-shadow(0px 0px 80px rgba(214, 85, 85, 0.3))
+    drop-shadow(0px 0px 10px rgba(174, 17, 25, 0.8));
 }
 
 [data-theme='ravenclaw'] {
@@ -30,6 +35,10 @@
   --btn-text: #f1ba8c;
   --display-color: #265caa;
   --detail-color: #06227b;
+  --quiz-card-text: var(--text-color);
+  --filter: drop-shadow(0px 0px 100px rgba(129, 169, 211, 0.2))
+    drop-shadow(0px 0px 80px rgba(154, 190, 237, 0.3))
+    drop-shadow(0px 0px 10px rgba(72, 138, 210, 0.8));
 }
 
 [data-theme='slytherin'] {
@@ -38,6 +47,10 @@
   --btn-text: #d3e9f5;
   --display-color: #086c5c;
   --detail-color: #095d67;
+  --quiz-card-text: var(--text-color);
+  --filter: drop-shadow(0px 0px 100px rgba(234, 254, 235, 0.2))
+    drop-shadow(0px 0px 80px rgba(10, 212, 199, 0.3))
+    drop-shadow(0px 0px 10px rgba(20, 132, 94, 0.8));
 }
 
 [data-theme='hufflepuff'] {
@@ -46,12 +59,183 @@
   --btn-text: #1e1e1e;
   --display-color: #ffd600;
   --detail-color: #fcb542;
+  --quiz-card-text: var(--btn-text);
+  --filter: drop-shadow(0px 0px 250px rgba(243, 228, 207, 0.2))
+    drop-shadow(0px 0px 80px rgba(227, 210, 153, 0.3))
+    drop-shadow(0px 0px 10px rgba(213, 147, 71, 0.8));
 }
 
+/* Variáveis de fontes */
+:root {
+  --font-display: 'IM FELL French Canon SC', serif;
+  --font-text: 'Coelacanth', serif;
+  --font-xxs: 1rem; /* 16px */
+  --font-xs: 1.25rem; /* 20px */
+  --font-s: 1.5rem; /* 24px */
+  --font-m: 1.75rem; /* 28px */
+  --font-l: 2rem; /* 32px */
+  --font-xl: 2.625rem; /* 42px */
+  --font-xxl: 3rem; /* 48px */
+  --font-xxl-display: 4.5rem; /* 72px */
+  --font-xxl-banner: 5rem; /* 80px */
+}
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos globais*/
 body {
-  font-family: 'Coelacanth', serif;
+  font-family: var(--font-text);
+
+  background-color: var(--bg-color);
 }
 
-span {
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('./src/assets/img/resultado_bg.jpg') center no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.container {
+  padding: 0 32px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
   color: var(--display-color);
+}
+
+h1 {
+  font-size: 3.25rem;
+}
+h2,
+h3 {
+  font-size: var(--font-xl);
+}
+
+p,
+li,
+input,
+label {
+  color: var(--text-color);
+}
+
+label {
+  color: var(--quiz-card-text);
+}
+
+p {
+  font-size: var(--font-xs);
+}
+
+li {
+  list-style: none;
+}
+
+.btn {
+  /* Tamanho e Reset básico */
+  width: 100%;
+  padding: 1rem 1.75rem;
+  font-size: var(--font-xxs);
+  font-weight: bold;
+  font-family: var(--font-display);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s;
+  background-color: var(--detail-color); /* Cor de fundo da bandeira */
+  color: var(--btn-text);
+}
+
+/*(Borda Interna / Stroke) */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 2px solid var(--btn-text); /* Cor secundária */
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+/* Corte da bandeira btn */
+.btnFlag {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    calc(100% - 20px) 50%,
+    100% 100%,
+    0% 100%,
+    20px 50%
+  );
+  padding-left: 2.75rem;
+  padding-right: 2.75rem;
+}
+
+.btnFlagLeft {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 20px 50%);
+  padding-left: 2.75rem;
+}
+
+.btnFlagRight {
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 50%, 100% 100%, 0% 100%);
+  padding-right: 2.75rem;
+}
+
+.btnModal {
+  display: block;
+  justify-self: flex-end;
+  align-self: flex-start;
+  background-color: transparent;
+  color: var(--btn-text);
+  padding: 16px;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.btnModal:hover {
+  transform: scale(1.1);
+  color: var(--detail-color);
+}
+
+/* Media Queries */
+
+@media (min-width: 1200px) {
+  .container {
+    padding: 0 60px;
+  }
+
+  p {
+    font-size: var(--font-s);
+  }
+  h1 {
+    font-size: var(--font-xxl-display);
+  }
+  h2 {
+    font-size: var(--font-xxl);
+  }
+}
+
+@media (min-width: 768px) {
+  .btn {
+    width: 300px;
+  }
 }

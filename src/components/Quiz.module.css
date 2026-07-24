@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 15px;
+  background-color: rgb(from var(--bg-color) r g b / 0.8);
+  justify-content: center;
+  width: 100%;
+  max-width: 80vw;
+}
+
+.quizForm {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnQuizz {
+  align-self: flex-end;
+}

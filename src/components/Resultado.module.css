@@ -1,0 +1,228 @@
+.container {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 0 32px;
+  margin-top: 72px;
+  margin-bottom: 72px;
+}
+.imgContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgContainer img {
+  max-width: 180px;
+  filter: var(--filter);
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.subtitle {
+  font-size: var(--font-l);
+}
+.subtitle span {
+  font-family: var(--font-display);
+  font-size: var(--font-xl);
+}
+.houseText {
+  text-align: center;
+}
+
+.houseContent,
+.houseTraits {
+  display: grid;
+  width: 100%;
+  margin-top: 32px;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  font-family: var(--font-display);
+  font-size: var(--font-xs);
+}
+
+.houseTraits {
+  grid-template-columns: 1fr 1fr;
+  font-size: var(--font-s);
+}
+
+.houseContent > li,
+.houseTraits > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.houseContent > li:not(:last-child)::after,
+.houseTraits > li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: -20px;
+  width: 2rem;
+  height: 1px;
+  background: var(--text-color);
+}
+
+.houseTraits > li:not(:last-child)::after {
+  bottom: auto;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 2rem;
+}
+
+.characterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.slide {
+  display: flex;
+  overflow-x: auto;
+}
+
+.characterTitle {
+  color: var(--text-color);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.characterCard {
+  position: relative;
+  width: 100%;
+  max-width: 256px;
+  height: 330px;
+  border-radius: 128px 128px 0 0;
+  overflow: hidden;
+  border: 5px solid var(--detail-color);
+  box-shadow: 0px 0px 30px rgba(248, 248, 241, 0.2);
+  flex-shrink: 1;
+}
+
+.characterCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.characterName {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: var(--font-s);
+  color: #dde0e3;
+  text-align: center;
+  z-index: 10;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  margin-top: 72px;
+  margin-bottom: 72px;
+  gap: 20px;
+}
+
+/* Estilos Web */
+@media (min-width: 768px) {
+  .container {
+    max-width: 100rem;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    margin-top: 156px;
+  }
+
+  .container:global(.houseStats) {
+    grid-template-columns: 3fr 2fr;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .imgContainer img {
+    max-width: 100%;
+    width: 560px;
+  }
+  .subtitle {
+    font-size: var(--font-xxl);
+  }
+  .subtitle span {
+    font-size: 3.75rem;
+  }
+  .houseText {
+    text-align: start;
+  }
+  .houseContent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .houseContent > li:not(:last-child)::after {
+    bottom: auto;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 2rem;
+  }
+
+  .houseTraits {
+    font-size: var(--font-m);
+  }
+
+  .characterContainer {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .btnContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 72px auto;
+  }
+}
+
+@media (min-width: 998px) {
+  .container {
+    padding: 0 60px;
+  }
+  .btnContainer {
+    padding: 0 60px;
+  }
+  .houseTraits {
+    font-size: var(--font-xl);
+  }
+}

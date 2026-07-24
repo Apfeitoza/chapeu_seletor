@@ -1,14 +1,16 @@
+import styles from './NameInput.module.css'
+
 const NameInput = ({ onSubmit, onChange, input, type, id }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor={id}>Caro aluno, insira o seu nome!</label>
-      <input
+    <form className={styles.form} onSubmit={onSubmit}>
+      <label className={styles.label} htmlFor={id}>Caro aluno, insira o seu nome!</label>
+      <input className={styles.input}
         type={type}
         id={id}
         value={input}
         onChange={onChange}        
       />
-      <button type='submit'>Enviar</button>
+      <button type='submit' className='btn btnFlag'>Enviar</button>
     </form>
   );
 };

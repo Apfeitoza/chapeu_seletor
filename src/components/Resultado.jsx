@@ -10,6 +10,8 @@ import {
 } from '../data/dicionario';
 import DadosSelecao from './DadosSelecao';
 import { ThemeContext } from '../ThemeContext.jsx';
+import Footer from './Footer.jsx';
+import styles from './Resultado.module.css';
 
 const Resultado = () => {
   const {
@@ -84,144 +86,83 @@ const Resultado = () => {
 
   return (
     <>
-      <section
-        className="container"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '16px',
-          padding: '0 60px',
-        }}
-      >
-        <div className="imgContainer" style={{ gridRow: '1/-1' }}>
-          <img
-            src={`./src/assets/badges/${casaSelecionada}_badge.svg`}
-            width={'300px'}
-            alt="escudo"
-          />
-        </div>
-        <div
-          className="contentContainer"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <h1 className="title">
-            {nomeSalvo}, bem vindo à
-            <span
-              style={{                
-                display: 'block',
-                textAlign: 'center',
-              }}
-            >
+      <div className="container">
+        <section className={styles.container}>
+          <div className={styles.imgContainer}>
+            <img
+              src={`./src/assets/badges/${casaSelecionada}_badge.svg`}
+              alt="escudo"
+            />
+          </div>
+          <div className={styles.contentContainer}>
+            <p className={styles.subtitle}>
+              <span className={styles.name}>{nomeSalvo}</span>, bem vindo à
+            </p>
+            <h1 className={styles.title}>
               {dicionarioCasas[listaCasa.name] || listaCasa.name}
-            </span>
-          </h1>
-          <div
-            className="content"
-            style={{ justifySelf: 'center', padding: '0 60px' }}
-          >
-            {casaSelecionada === 'gryffindor' && <p>{houses.gryffindor}</p>}
-            {casaSelecionada === 'hufflepuff' && <p>{houses.hufflepuff}</p>}
-            {casaSelecionada === 'slytherin' && <p>{houses.slytherin}</p>}
-            {casaSelecionada === 'ravenclaw' && <p>{houses.ravenclaw}</p>}
-          </div>
-          <ul
-            className="houseDescription"
-            style={{
-              listStyle: 'none',
-              display: 'flex',
-              gap: '20px',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <li>{listaCasa.founder}</li>
-            <li>
-              {dicionarioCores[listaCasa.houseColours] ||
-                listaCasa.houseColours}
-            </li>
-            <li>
-              <ul
-                className="houseHeaders"
-                style={{ listStyle: 'none', margin: '0', padding: '0' }}
-              >
-                {listaCasa.heads.map((head) => (
-                  <li key={head.id}>
-                    {head.firstName} {head.lastName}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-          <ul
-            className="houseTraits"
-            style={{
-              listStyle: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '16px',
-            }}
-          >
-            {traitsSorteados.map((trait) => {
-              const houseTraits = dicionarioTraits[casaSelecionada];
-              const traducao = houseTraits?.[trait.name] || trait.name;
+            </h1>
+            <div className={styles.houseText}>
+              {casaSelecionada === 'gryffindor' && <p>{houses.gryffindor}</p>}
+              {casaSelecionada === 'hufflepuff' && <p>{houses.hufflepuff}</p>}
+              {casaSelecionada === 'slytherin' && <p>{houses.slytherin}</p>}
+              {casaSelecionada === 'ravenclaw' && <p>{houses.ravenclaw}</p>}
+            </div>
+            <ul className={styles.houseContent}>
+              <li>{listaCasa.founder}</li>
+              <li>
+                {dicionarioCores[listaCasa.houseColours] ||
+                  listaCasa.houseColours}
+              </li>
+              <li>
+                <ul className={styles.houseHeaders}>
+                  {listaCasa.heads.map((head) => (
+                    <li key={head.id}>
+                      {head.firstName} {head.lastName}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+            <ul className={styles.houseTraits}>
+              {traitsSorteados.map((trait) => {
+                const houseTraits = dicionarioTraits[casaSelecionada];
+                const traducao = houseTraits?.[trait.name] || trait.name;
 
-              return <li key={trait.id}>{traducao}</li>;
-            })}
-          </ul>
-        </div>
-      </section>
-      <section
-        className="container"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 360px',
-          gap: '16px',
-          padding: '0 60px',
-        }}
-      >
-        <div
-          className="famousCharacters"
-          style={{
-            padding: '0 0 0 60px',
-          }}
-        >
-          <h2>Bruxos Famosos:</h2>
-          <div>
-            {bruxosSorteados.map((bruxo) => (
-              <div key={bruxo.id}>
-                <img
-                  style={{ maxWidth: '260px' }}
-                  src={bruxo.image}
-                  alt={bruxo.name}
-                />{' '}
-                <p>{bruxo.name} </p>
-              </div>
-            ))}
+                return <li key={trait.id}>{traducao}</li>;
+              })}
+            </ul>
+          </div>
+        </section>
+        <section className={`${styles.container} houseStats`}>
+          <div className={styles.characterContainer}>
+            <h2 className={styles.characterTitle}>Personalidades</h2>
+
+            <div className={styles.cardContainer}>
+              {bruxosSorteados.map((bruxo) => (
+                <div className={styles.characterCard} key={bruxo.id}>
+                  <img src={bruxo.image} alt={bruxo.name} />{' '}
+                  <p className={styles.characterName}>{bruxo.name} </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <DadosSelecao
+            casaTraduzida={dicionarioCasas[listaCasa.name]}
+            casaSelecionada={casaSelecionada}
+          />
+        </section>
+        
+          <div className={styles.btnContainer}>
+            <button className="btn btnFlagLeft" onClick={handleClick}>
+              Refazer Seleção
+            </button>
+            <button className="btn btnFlagRight" onClick={() => navigate('/')}>
+              Voltar
+            </button>
           </div>
         </div>
-        <DadosSelecao
-          casaTraduzida={dicionarioCasas[listaCasa.name]}
-          casaSelecionada={casaSelecionada}
-        />
-      </section>
-      <div
-        className="btns"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '20px 120px',
-        }}
-      >
-        <button onClick={handleClick}>Refazer Seleção</button>
-        <button onClick={() => navigate('/')}>Voltar</button>
-      </div>
+    
+      <Footer />
     </>
   );
 };

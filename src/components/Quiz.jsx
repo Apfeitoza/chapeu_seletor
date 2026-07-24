@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { supabase } from '../supabaseClient.js';
 import { ThemeContext } from '../ThemeContext.jsx';
+import styles from './Quiz.module.css'
 
 const Quiz = () => {
   const navigate = useNavigate(); //instancia a navegação entre páginas
   const [casaSelecionada, setCasaSelecionada] = useLocalStorage('casa', '');
   const [slide, setSlide] = React.useState(0); //Controla os slides das perguntas
   const [respostas, setRespostas] = React.useState({}); //controla a resposta do usuário
-  const { selectHouseTheme } =
-    React.useContext(ThemeContext);
+  const { selectHouseTheme } = React.useContext(ThemeContext);
 
   function handleChange({ target }) {
     setRespostas({ ...respostas, [target.name]: target.value });
@@ -80,9 +80,8 @@ const Quiz = () => {
   }
 
   return (
-    <div>
-      <h1>Quiz</h1>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <form className={styles.quizForm} onSubmit={handleSubmit}>
         {perguntasHogwarts.map((pergunta, index) => (
           <Radio
             active={slide === index}
@@ -94,6 +93,7 @@ const Quiz = () => {
         ))}
         {slide < perguntasHogwarts.length - 1 ? (
           <button
+            className={`${styles.btnQuizz} btn btnFlagRight`}
             type="button"
             onClick={handleClick}
             disabled={!respostas[perguntasHogwarts[slide].id]}
@@ -102,6 +102,7 @@ const Quiz = () => {
           </button>
         ) : (
           <button
+            className={`${styles.btnQuizz} btn btnFlagRight`}
             onClick={handleClick}
             disabled={!respostas[perguntasHogwarts[slide].id]}
           >

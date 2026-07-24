@@ -4,6 +4,8 @@ import NameInput from './NameInput';
 import { useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import Modal from './Modal';
+import Footer from './Footer';
+import DadosSelecao from './DadosSelecao';
 
 const Home = () => {
   const [inputNome, setInputNome] = React.useState('');
@@ -16,6 +18,10 @@ const Home = () => {
     setInputNome(target.value);
   }
 
+  function handleClose() {
+    setIsModalOpen(false);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     setNomeSalvo(inputNome);
@@ -25,45 +31,61 @@ const Home = () => {
 
   if (nomeSalvo) {
     return (
-      <div>
-        <h1>
-          Bem vindo a Hogwarts <span>{nomeSalvo}!</span>
-        </h1>
-
-        <button className={styles.botao} onClick={() => navigate('/quiz')}>
-          Começar o Teste
-        </button>
-        {casaSelecionada !== 'default' ? (
-          <button
-            className={styles.botao}
-            onClick={() => navigate('/resultado')}
-          >
-            Salão Comunal
-          </button>
-        ) : null}
-      </div>
+      <>
+        <section className={styles.container}>
+          <h1 className={styles.title}>
+            Bem vindo a Hogwarts <span>{nomeSalvo}!</span>
+          </h1>
+          <div className={styles.buttonContainer}>
+            <button className="btn btnFlag" onClick={() => navigate('/quiz')}>
+              Começar o Teste
+            </button>
+            {casaSelecionada !== 'default' ? (
+              <button
+                className="btn btnFlag"
+                onClick={() => navigate('/resultado')}
+              >
+                Salão Comunal
+              </button>
+            ) : null}
+          </div>
+        </section>
+        <section className={styles.sorteados}>
+          <h2 className={styles.title}>Sorteados</h2>
+          <DadosSelecao />
+        </section>
+        <Footer />
+      </>
     );
   }
 
   return (
-    <div>
-      <h1>Saiba qual é a sua casa de Hogwarts</h1>
-      <p>Coloque o chapéu seletor e descubra a qual casa você pertence</p>
+    <>
+      <section className={styles.container}>
+        <h1 className={styles.title}>Saiba qual é a sua casa de Hogwarts</h1>
+        <p>Coloque o chapéu seletor e descubra a qual casa você pertence</p>
 
-      <button className={styles.botao} onClick={() => setIsModalOpen(true)}>
-        Iniciar Cerimônia
-      </button>
+        <button className="btn btnFlag" onClick={() => setIsModalOpen(true)}>
+          Iniciar Cerimônia
+        </button>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <NameInput
-          id={'nome'}
-          type={'text'}
-          input={inputNome}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-        />
-      </Modal>
-    </div>
+        <Modal isOpen={isModalOpen} onClose={handleClose}>
+          <NameInput
+            id={'nome'}
+            type={'text'}
+            input={inputNome}
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+          />
+        </Modal>
+      </section>
+      <section className={styles.sorteados}>
+        <h2 className={styles.title}>Sorteados</h2>
+        <DadosSelecao />
+      </section>
+
+      <Footer />
+    </>
   );
 };
 
