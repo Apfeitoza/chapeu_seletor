@@ -24,9 +24,11 @@ const Home = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setNomeSalvo(inputNome);
-    setInputNome('');
-    setIsModalOpen(false);
+    if (!inputNome || inputNome.trim() !== '') {
+      setNomeSalvo(inputNome.trim());
+      setInputNome('');
+      setIsModalOpen(false);
+    }
   }
 
   if (nomeSalvo) {

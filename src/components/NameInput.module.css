@@ -27,7 +27,7 @@
   border: 2px solid var(--display-color);
   border-radius: 3px;
   outline: none;
-  transition: transform .3s;
+  transition: transform 0.3s;
 }
 
 .input:hover,

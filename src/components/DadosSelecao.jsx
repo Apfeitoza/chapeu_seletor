@@ -2,6 +2,7 @@ import React from 'react';
 import { supabase } from '../supabaseClient';
 import { useLocation } from 'react-router-dom';
 import styles from './DadosSelecao.module.css';
+import Loading from './Loading';
 
 const DadosSelecao = ({ casaTraduzida, casaSelecionada }) => {
   const [items, setItems] = React.useState([]);
@@ -38,7 +39,7 @@ const DadosSelecao = ({ casaTraduzida, casaSelecionada }) => {
 
   const houseMates = items.find((item) => item.house_name === casaSelecionada);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <Loading />;
   if (location.pathname === '/resultado')
     return (
       <div className={styles.container}>

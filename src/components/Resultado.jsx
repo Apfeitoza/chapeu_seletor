@@ -12,6 +12,7 @@ import DadosSelecao from './DadosSelecao';
 import { ThemeContext } from '../ThemeContext.jsx';
 import Footer from './Footer.jsx';
 import styles from './Resultado.module.css';
+import Loading from './Loading.jsx';
 
 const Resultado = () => {
   const {
@@ -75,7 +76,7 @@ const Resultado = () => {
     navigate('/');
   }
 
-  if (loadingCasa || loadingBruxo) return <p>Carregando...</p>;
+  if (loadingCasa || loadingBruxo) return <Loading />;
   if (errorCasa) return <p>Erro: {errorCasa}</p>;
   if (errorBruxo) return <p>Erro: {errorBruxo}</p>;
   if (dataCasa === null || dataBruxo === null) return null;
@@ -151,17 +152,17 @@ const Resultado = () => {
             casaSelecionada={casaSelecionada}
           />
         </section>
-        
-          <div className={styles.btnContainer}>
-            <button className="btn btnFlagLeft" onClick={handleClick}>
-              Refazer Seleção
-            </button>
-            <button className="btn btnFlagRight" onClick={() => navigate('/')}>
-              Voltar
-            </button>
-          </div>
+
+        <div className={styles.btnContainer}>
+          <button className="btn btnFlagLeft" onClick={handleClick}>
+            Refazer Seleção
+          </button>
+          <button className="btn btnFlagRight" onClick={() => navigate('/')}>
+            Voltar
+          </button>
         </div>
-    
+      </div>
+
       <Footer />
     </>
   );
